@@ -1,23 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-  <!-- Главная страница -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://moto-abh.ru/</loc>
-    <lastmod>2025-12-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-11-22</lastmod>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/5.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/33.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/excursions/coast.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/22.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/4.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/777.jpg</image:loc>
+    </image:image>
   </url>
-
-  <!-- Страница «О нас» — исправлен URL! -->
+  <url>
+    <loc>https://moto-abh.ru/enduro/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/5.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/33.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/4.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://moto-abh.ru/excursions/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/excursions/ridge.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/excursions/fortress.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/excursions/waterfall.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/excursions/forest-pool.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/excursions/canyon.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/excursions/sunset.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/excursions/coast.webp</image:loc>
+    </image:image>
+  </url>
   <url>
     <loc>https://moto-abh.ru/about/</loc>
-    <lastmod>2025-12-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-11-22</lastmod>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/22.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/t1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://moto-abh.ru/assets/img/t2.jpeg</image:loc>
+    </image:image>
   </url>
-
 </urlset>
