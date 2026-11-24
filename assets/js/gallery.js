@@ -1,3 +1,31 @@
+const onHorizontalSwipe = (element, onStep) => {
+  let startX = 0;
+  let startY = 0;
+  let tracking = false;
+
+  element.addEventListener('touchstart', (event) => {
+    if (event.touches.length !== 1) {
+      tracking = false;
+      return;
+    }
+    startX = event.touches[0].clientX;
+    startY = event.touches[0].clientY;
+    tracking = true;
+  }, { passive: true });
+
+  element.addEventListener('touchend', (event) => {
+    if (!tracking || event.changedTouches.length !== 1) {
+      return;
+    }
+    tracking = false;
+    const dx = event.changedTouches[0].clientX - startX;
+    const dy = event.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+      onStep(dx < 0 ? 1 : -1);
+    }
+  }, { passive: true });
+};
+
 const hero = document.querySelector('[data-hero]');
 
 if (hero) {
@@ -7,35 +35,41 @@ if (hero) {
   let activeIndex = 0;
   let requestedIndex = 0;
 
+  const formatCaption = (index, frame) => `${index + 1} / ${frames.length} · ${frame.dataset.caption}`;
+
+  const goToHeroSlide = async (step) => {
+    requestedIndex = (requestedIndex + step + frames.length) % frames.length;
+    const nextIndex = requestedIndex;
+    const nextFrame = frames[nextIndex];
+
+    if (nextFrame.dataset.src) {
+      nextFrame.src = nextFrame.dataset.src;
+      delete nextFrame.dataset.src;
+    }
+
+    try {
+      await nextFrame.decode();
+    } catch {
+      if (requestedIndex === nextIndex) {
+        requestedIndex = activeIndex;
+      }
+      return;
+    }
+
+    if (requestedIndex === nextIndex && activeIndex !== nextIndex) {
+      frames[activeIndex].classList.remove('is-active');
+      nextFrame.classList.add('is-active');
+      caption.textContent = formatCaption(nextIndex, nextFrame);
+      activeIndex = nextIndex;
+    }
+  };
+
+  caption.textContent = formatCaption(activeIndex, frames[activeIndex]);
   picker.hidden = false;
   for (const button of picker.querySelectorAll('[data-hero-step]')) {
-    button.addEventListener('click', async () => {
-      requestedIndex = (requestedIndex + Number(button.dataset.heroStep) + frames.length) % frames.length;
-      const nextIndex = requestedIndex;
-      const nextFrame = frames[nextIndex];
-
-      if (nextFrame.dataset.src) {
-        nextFrame.src = nextFrame.dataset.src;
-        delete nextFrame.dataset.src;
-      }
-
-      try {
-        await nextFrame.decode();
-      } catch {
-        if (requestedIndex === nextIndex) {
-          requestedIndex = activeIndex;
-        }
-        return;
-      }
-
-      if (requestedIndex === nextIndex && activeIndex !== nextIndex) {
-        frames[activeIndex].classList.remove('is-active');
-        nextFrame.classList.add('is-active');
-        caption.textContent = nextFrame.dataset.caption;
-        activeIndex = nextIndex;
-      }
-    });
+    button.addEventListener('click', () => goToHeroSlide(Number(button.dataset.heroStep)));
   }
+  onHorizontalSwipe(hero, goToHeroSlide);
 }
 
 const gallery = document.querySelector('[data-gallery]');
@@ -74,6 +108,8 @@ if (gallery && lightbox?.showModal) {
   for (const button of lightbox.querySelectorAll('[data-gallery-step]')) {
     button.addEventListener('click', () => show(activeIndex + Number(button.dataset.galleryStep)));
   }
+
+  onHorizontalSwipe(lightbox, (step) => show(activeIndex + step));
 
   lightbox.addEventListener('keydown', (event) => {
     const step = { ArrowLeft: -1, ArrowRight: 1 }[event.key];
